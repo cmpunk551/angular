@@ -1,0 +1,45 @@
+
+<div class="card text-center m-3">
+    <h3 class="card-header">Список пользователей</h3>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Email</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">PhoneNumber</th>
+            </tr>
+            </thead>
+            <tbody>
+            <ng-container *ngFor="let item of pageOfItems; index as index" >
+                <tr>
+                    <td>{{item.emailAddress}}</td>
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.phoneNumber}}</td>
+                </tr>
+            </ng-container>
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer pb-0 pt-3">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item first-item">
+                <a routerLink [queryParams]="{ page: 1 }" class="page-link">Первая</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}" class="page-item previous-item">
+                <a routerLink [queryParams]="{ page: pager.currentPage - 1 }" class="page-link">Предыдущая</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}" class="page-item number-item">
+                <a routerLink [queryParams]="{ page: page }" class="page-link">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item next-item">
+                <a routerLink [queryParams]="{ page: pager.currentPage + 1 }" class="page-link">Следующая</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}" class="page-item last-item">
+                <a routerLink [queryParams]="{ page: pager.totalPages }" class="page-link">Последняя</a>
+            </li>
+        </ul>
+    </div>
+</div>
