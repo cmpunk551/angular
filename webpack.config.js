@@ -35,7 +35,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://localhost:4000'
+                target: 'http://smtdecs.ru:4000'
             }
         }
     }
